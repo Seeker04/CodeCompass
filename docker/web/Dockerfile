@@ -39,12 +39,11 @@ RUN set -x && apt-get update -qq \
     gcc-11 g++-11 \
   && ln -s /usr/bin/gcc-11 /usr/bin/gcc \
   && ln -s /usr/bin/g++-11 /usr/bin/g++ \
+  # Build ODB from source
+  && sh /install_odb.sh && rm /install_odb.sh \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/ \
   && set +x
-
-# Build ODB from source
-RUN sh /install_odb.sh && rm /install_odb.sh
 
 # Install NodeJS from NodeSource.
 RUN mkdir -p /etc/apt/keyrings && \
